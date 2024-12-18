@@ -1,0 +1,71 @@
+Index: reservelt-backend/src/main/java/de/fhdo/reservelt/bootstrap/DummyDataBootstrap.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package de.fhdo.reservelt.bootstrap;\r\n\r\nimport de.fhdo.reservelt.domain.City;\r\nimport de.fhdo.reservelt.domain.Country;\r\nimport de.fhdo.reservelt.domain.Restaurant;\r\nimport de.fhdo.reservelt.domain.Role;\r\nimport de.fhdo.reservelt.domain.enums.RoleName;\r\nimport de.fhdo.reservelt.dto.UserRegisterDto;\r\nimport de.fhdo.reservelt.repositories.CityRepository;\r\nimport de.fhdo.reservelt.repositories.CountryRepository;\r\nimport de.fhdo.reservelt.repositories.RestaurantRepository;\r\nimport de.fhdo.reservelt.repositories.RoleRepository;\r\nimport de.fhdo.reservelt.services.UserService;\r\nimport org.hibernate.mapping.List;\r\nimport org.springframework.context.ApplicationListener;\r\nimport org.springframework.context.event.ContextRefreshedEvent;\r\nimport org.springframework.stereotype.Component;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.ArrayList;\r\n\r\n@Component\r\npublic class DummyDataBootstrap implements ApplicationListener<ContextRefreshedEvent> {\r\n\r\n    private final UserService userService;\r\n    private final RoleRepository roleRepository;\r\n    private final CountryRepository countryRepository;\r\n    private final CityRepository cityRepository;\r\n    private final RestaurantRepository restaurantRepository;\r\n\r\n    public DummyDataBootstrap(UserService userService,\r\n                              RoleRepository roleRepository,\r\n                              CountryRepository countryRepository,\r\n                              CityRepository cityRepository, RestaurantRepository restaurantRepository) {\r\n        this.userService = userService;\r\n        this.roleRepository = roleRepository;\r\n        this.countryRepository = countryRepository;\r\n        this.cityRepository = cityRepository;\r\n        this.restaurantRepository = restaurantRepository;\r\n    }\r\n\r\n    @Override\r\n    public void onApplicationEvent(ContextRefreshedEvent event) {\r\n        initData();\r\n    }\r\n\r\n    private void initData() {\r\n        Country country1 = new Country();\r\n        country1.setId(1L);\r\n        country1.setName(\"Germany\");\r\n        countryRepository.save(country1);\r\n\r\n        Country country2 = new Country();\r\n        country2.setId(2L);\r\n        country2.setName(\"Kazakhstan\");\r\n        countryRepository.save(country2);\r\n\r\n        Country country3 = new Country();\r\n        country3.setId(3L);\r\n        country3.setName(\"France\");\r\n        countryRepository.save(country3);\r\n\r\n        City city1 = new City();\r\n        city1.setId(1L);\r\n        city1.setName(\"Dortmund\");\r\n        city1.setCountry(country1);\r\n        cityRepository.save(city1);\r\n\r\n        City city2 = new City();\r\n        city2.setId(2L);\r\n        city2.setName(\"Taraz\");\r\n        city2.setCountry(country2);\r\n        cityRepository.save(city2);\r\n\r\n        City city3 = new City();\r\n        city3.setId(3L);\r\n        city3.setName(\"Lion\");\r\n        city3.setCountry(country3);\r\n        cityRepository.save(city3);\r\n\r\n        Role userRole = new Role();\r\n        userRole.setId(1L);\r\n        userRole.setRoleName(RoleName.USER);\r\n        roleRepository.save(userRole);\r\n\r\n        Role restaurantRole = new Role();\r\n        restaurantRole.setId(2L);\r\n        restaurantRole.setRoleName(RoleName.RESTAURANT);\r\n        roleRepository.save(restaurantRole);\r\n\r\n        Role adminRole = new Role();\r\n        adminRole.setId(3L);\r\n        adminRole.setRoleName(RoleName.ADMIN);\r\n        roleRepository.save(adminRole);\r\n\r\n        Restaurant resGrammons = new Restaurant();\r\n        resGrammons.setId(1L);\r\n        resGrammons.setName(\"Grammons Restaurant\");\r\n        resGrammons.setAddress(\"Wieckesweg 29, 44309 Dortmund\");\r\n        resGrammons.setPhoneNumber(\"+49 231 93144465\");\r\n        resGrammons.setRating(\"4.6\");\r\n        restaurantRepository.save(resGrammons);\r\n\r\n        Restaurant resTheStage = new Restaurant();\r\n        resTheStage.setId(2L);\r\n        resTheStage.setName(\"The Stage\");\r\n        resTheStage.setAddress(\"Dula Center, Nortkirchenstraße 53, 44263 Dortmund\");\r\n        resTheStage.setPhoneNumber(\"+49 231 2222550\");\r\n        resTheStage.setRating(\"4.7\");\r\n\r\n        restaurantRepository.save(resTheStage);\r\n\r\n        UserRegisterDto userRegisterDto = new UserRegisterDto();\r\n        userRegisterDto.setFirstName(\"John\");\r\n        userRegisterDto.setLastName(\"Doe\");\r\n        userRegisterDto.setBirthDate(LocalDate.of(1999, 12, 31));\r\n        userRegisterDto.setCountry(1L);\r\n        userRegisterDto.setCity(1L);\r\n        userRegisterDto.setEmail(\"email@mail.com\");\r\n        userRegisterDto.setPassword(\"Qwerty123!\");\r\n        userRegisterDto.setPasswordConfirmation(\"Qwerty123!\");\r\n        userService.save(userRegisterDto);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/reservelt-backend/src/main/java/de/fhdo/reservelt/bootstrap/DummyDataBootstrap.java b/reservelt-backend/src/main/java/de/fhdo/reservelt/bootstrap/DummyDataBootstrap.java
+--- a/reservelt-backend/src/main/java/de/fhdo/reservelt/bootstrap/DummyDataBootstrap.java	(revision 18fddb6c7b23c3999b4d70e051c28f51bd3679ae)
++++ b/reservelt-backend/src/main/java/de/fhdo/reservelt/bootstrap/DummyDataBootstrap.java	(date 1733913743815)
+@@ -1,21 +1,16 @@
+ package de.fhdo.reservelt.bootstrap;
+ 
+-import de.fhdo.reservelt.domain.City;
+-import de.fhdo.reservelt.domain.Country;
+-import de.fhdo.reservelt.domain.Restaurant;
+-import de.fhdo.reservelt.domain.Role;
++import de.fhdo.reservelt.domain.*;
+ import de.fhdo.reservelt.domain.enums.RoleName;
+ import de.fhdo.reservelt.dto.UserRegisterDto;
+-import de.fhdo.reservelt.repositories.CityRepository;
+-import de.fhdo.reservelt.repositories.CountryRepository;
+-import de.fhdo.reservelt.repositories.RestaurantRepository;
+-import de.fhdo.reservelt.repositories.RoleRepository;
++import de.fhdo.reservelt.repositories.*;
+ import de.fhdo.reservelt.services.UserService;
+ import org.hibernate.mapping.List;
+ import org.springframework.context.ApplicationListener;
+ import org.springframework.context.event.ContextRefreshedEvent;
+ import org.springframework.stereotype.Component;
+ 
++import java.math.BigDecimal;
+ import java.time.LocalDate;
+ import java.util.ArrayList;
+ 
+@@ -27,16 +22,18 @@
+     private final CountryRepository countryRepository;
+     private final CityRepository cityRepository;
+     private final RestaurantRepository restaurantRepository;
++    private final FoodRepository foodRepository;
+ 
+     public DummyDataBootstrap(UserService userService,
+                               RoleRepository roleRepository,
+                               CountryRepository countryRepository,
+-                              CityRepository cityRepository, RestaurantRepository restaurantRepository) {
++                              CityRepository cityRepository, RestaurantRepository restaurantRepository, FoodRepository foodRepository) {
+         this.userService = userService;
+         this.roleRepository = roleRepository;
+         this.countryRepository = countryRepository;
+         this.cityRepository = cityRepository;
+         this.restaurantRepository = restaurantRepository;
++        this.foodRepository = foodRepository;
+     }
+ 
+     @Override
+@@ -110,6 +107,15 @@
+ 
+         restaurantRepository.save(resTheStage);
+ 
++        Food food1 = new Food();
++        food1.setId(1L);
++        food1.setName("Burger");
++        food1.setDescription("A burger with cheese, tomatoes, and lettuce.");
++        food1.setPrice(BigDecimal.valueOf(8.0));
++        food1.setRestaurant(resGrammons);
++
++        foodRepository.save(food1);
++
+         UserRegisterDto userRegisterDto = new UserRegisterDto();
+         userRegisterDto.setFirstName("John");
+         userRegisterDto.setLastName("Doe");

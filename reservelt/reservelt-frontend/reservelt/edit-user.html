@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>User Edit</title>
+    <link rel="stylesheet" href="style/register.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div id="userEditForm" class="alert alert-info mt-2">
+        <h2 class="form-signin-heading">Edit User</h2>
+        <div id="successMessage" style="color: green; display: none;"></div>
+        <div id="errorMessage" style="color: red; display: none;"></div>
+        <form id="editUserForm" class="form-signin">
+            <table>
+                <tr>
+                    <th>
+                        <label for="firstname" class="sr-only">First Name</label>
+                    </th>
+                    <td>
+                        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First Name" required autofocus>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="lastname" class="sr-only">Last Name</label>
+                    </th>
+                    <td>
+                        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last Name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="birthDate">Birth Date</label>
+                    </th>
+                    <th>
+                        <input type="date" id="birthDate" name="birthDate" class="form-control" required/>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="country">Country</label>
+                    </th>
+                    <th>
+                        <select name="country" id="country" class="form-control"></select>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="city">City</label>
+                    </th>
+                    <th>
+                        <select name="city" id="city" class="form-control"></select>
+                    </th>
+                </tr>
+            </table>
+            <button id="submitEditButton" class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
+            <a href="profile.html" class="btn btn-warning">Cancel</a>
+        </form>
+        <button id="toggleGraphqlButton" class="btn btn-primary">Toggle graphql</button>
+    </div>
+</div>
+
+<script src="js/edit-user.js"></script>
+<script src="js/graphql-toggle.js"></script>
+</body>
+</html>

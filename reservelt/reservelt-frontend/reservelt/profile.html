@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Profile</title>
+  <link rel="stylesheet" href="style/register.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h2 id="greeting">Welcome!</h2>
+  <div id="errorMessage" style="color: red; display: none;"></div>
+  <div id="successMessage" style="color: green; display: none;"></div>
+  <div id="userProfile" class="alert alert-info mt-2" style="display: none;">
+    <table>
+      <tr>
+        <th>First Name</th>
+        <td id="firstName"></td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td id="lastName"></td>
+      </tr>
+      <tr>
+        <th>Birth Date</th>
+        <td id="birthDate"></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td id="email"></td>
+      </tr>
+      <tr>
+        <th>Country</th>
+        <td id="country"></td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td id="city"></td>
+      </tr>
+    </table>
+    <button id="logoutButton" class="btn btn-danger">Logout</button><br>
+    <button id="openDeleteModalBtn" class="btn btn-primary">Delete Account</button>
+    <a href="edit-user.html" class="btn btn-warning">Edit Account</a>
+    <a href="change-password.html" class="btn btn-warning">Change Password</a>
+  </div>
+
+  <div id="deleteAccountModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h4>Are you sure?</h4>
+        <p>Do you really want to delete your account? This action cannot be undone.</p>
+        <button id="confirmDeleteBtn" class="btn btn-danger">Yes, Delete</button>
+        <button type="button" id="cancelDeleteBtn" class="btn btn-secondary">Cancel</button>
+    </div>
+  </div>
+  <button id="toggleGraphqlButton" class="btn btn-primary">Toggle graphql</button>
+</div>
+
+<script src="js/profile.js"></script>
+<script src="js/graphql-toggle.js"></script>
+</body>
+</html>

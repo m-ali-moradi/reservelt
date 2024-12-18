@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Register</title>
+    <link rel="stylesheet" href="style/register.css">
+</head>
+
+<body>
+<div class="container">
+    <form id="registerForm" class="form-signin">
+        <h2 class="form-signin-heading">Registration</h2>
+        <span id="errorMessage" style="color: red; display: none;"></span>
+
+        <p>
+            <label for="firstname" class="sr-only">First Name</label>
+            <input type="text" id="firstname" name="firstName" class="form-control" placeholder="First Name" required autofocus>
+        </p>
+        <p>
+            <label for="lastname" class="sr-only">Last Name</label>
+            <input type="text" id="lastname" name="lastName" class="form-control" placeholder="Last Name" required>
+        </p>
+        <p>
+            <label for="birthDate">Birth Date</label>
+            <input type="date" id="birthDate" name="birthDate" class="form-control" required>
+        </p>
+        <p>
+            <label for="country">Country</label>
+            <select name="country" id="country" class="form-control">
+                <option value="">Choose Country</option>
+            </select>
+        </p>
+        <p>
+            <label for="city">City</label>
+            <select name="city" id="city" class="form-control">
+                <option value="">Choose City</option>
+            </select>
+        </p>
+        <p>
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+        </p>
+        <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        </p>
+        <p>
+            <label for="passwordConfirmation" class="sr-only">Password Confirmation</label>
+            <input type="password" id="passwordConfirmation" name="passwordConfirmation" class="form-control" placeholder="Password Confirmation" required>
+        </p>
+        <div class="btn-container">
+            <button type="submit" class="btn">Sign up</button><br>
+        </div>
+        <p><a href="login.html">Already have an account?</a></p>
+    </form>
+
+    <button id="toggleGraphqlButton" class="btn btn-primary">Toggle graphql</button>
+</div>
+
+<script src="js/register.js"></script>
+<script src="js/graphql-toggle.js"></script>
+
+</body>
+</html>

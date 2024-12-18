@@ -1,0 +1,31 @@
+GET http://localhost:8080/api/restaurants
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+Cookie: JSESSIONID=CDE6C771935AF1BAA9A80518C9B1BFB1
+cookie: JSESSIONID=CDE6C771935AF1BAA9A80518C9B1BFB1
+content-length: 81
+
+{
+  "id": 0,
+  "name": "",
+  "address": "",
+  "phoneNumber": "",
+  "rating": ""
+}
+
+<> 2024-12-11T213440.200.html
+
+###
+
+GET http://localhost:8080/api/restaurants
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+cookie: JSESSIONID=CDE6C771935AF1BAA9A80518C9B1BFB1
+
+<> 2024-12-11T213431.200.html
+
+###
+

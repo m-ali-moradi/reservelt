@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2396228c-97fb-4d45-be44-a0d4b77de917" name="Changes" comment="Restaurant Graphql add and other changes with Restaurant rest API." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="AnnotationType" />
+        <option value="Class" />
+        <option value="Vue Composition API Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="lab_04" />
+        <entry key="$PROJECT_DIR$/reservelt-backend" value="lab_06" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/reservelt-backend" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2oAgSmGTMjBokfjaZecphFWZRCe" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;HTTP Request.generated-requests | #3.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;ShowUsagesActions.previewPropertyKey&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ReserveltApplication.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;lab__07&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/FH Dortmund/First Semester/Advanced Web Engineering/reservelt/reservelt&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.23678161&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;e028e3c04adf2a7b4252eb3cc8fd36d0&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
+    ],
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
+    ]
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="de.fhdo.reservelt.services.impl" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ReserveltApplication">
+    <configuration name="generated-requests | #10" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="10" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #12" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="12" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#3" index="3" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="ReserveltApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="reservelt" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="de.fhdo.reservelt.ReserveltApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.generated-requests | #3" />
+        <item itemvalue="HTTP Request.generated-requests | #12" />
+        <item itemvalue="HTTP Request.generated-requests | #10" />
+        <item itemvalue="HTTP Request.generated-requests | #12" />
+        <item itemvalue="HTTP Request.generated-requests | #10" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2396228c-97fb-4d45-be44-a0d4b77de917" name="Changes" comment="" />
+      <created>1730317796153</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730317796153</updated>
+      <workItem from="1730317797524" duration="893000" />
+      <workItem from="1730820496671" duration="2195000" />
+      <workItem from="1730893037654" duration="1347000" />
+      <workItem from="1731231092913" duration="18458000" />
+      <workItem from="1731337807146" duration="11731000" />
+      <workItem from="1731358380364" duration="2358000" />
+      <workItem from="1731396384015" duration="697000" />
+      <workItem from="1731397162824" duration="155000" />
+      <workItem from="1731413340813" duration="8201000" />
+      <workItem from="1731438004107" duration="290000" />
+      <workItem from="1731438303284" duration="1659000" />
+      <workItem from="1731483561924" duration="8247000" />
+      <workItem from="1731773192409" duration="7414000" />
+      <workItem from="1732307066341" duration="805000" />
+      <workItem from="1732656303073" duration="756000" />
+      <workItem from="1732698302055" duration="4253000" />
+      <workItem from="1733264385558" duration="6154000" />
+      <workItem from="1733312737063" duration="665000" />
+      <workItem from="1733478130689" duration="1590000" />
+      <workItem from="1733652382533" duration="19879000" />
+      <workItem from="1733733411620" duration="61000" />
+      <workItem from="1733738442377" duration="2561000" />
+      <workItem from="1733761088944" duration="2346000" />
+    </task>
+    <task id="LOCAL-00001" summary="lab 03 implementation of Service Layer with business logic">
+      <created>1731249730546</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731249730546</updated>
+    </task>
+    <task id="LOCAL-00002" summary="lab 04 merge business logic and thymleaf">
+      <created>1731357362437</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731357362437</updated>
+    </task>
+    <task id="LOCAL-00003" summary="lab 04 merge business logic and thymleaf">
+      <created>1731360731929</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731360731929</updated>
+    </task>
+    <task id="LOCAL-00004" summary="lab 04 merge business logic and thymleaf">
+      <created>1731415959304</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731415959304</updated>
+    </task>
+    <task id="LOCAL-00005" summary="renamed controller to web">
+      <created>1731423333842</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731423333842</updated>
+    </task>
+    <task id="LOCAL-00006" summary="lab 05 implement rest controller">
+      <created>1731426445308</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731426445308</updated>
+    </task>
+    <task id="LOCAL-00007" summary="lab 04 directory renaming">
+      <created>1731438862862</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1731438862862</updated>
+    </task>
+    <task id="LOCAL-00008" summary="lab 05 renaming">
+      <created>1731439051502</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1731439051502</updated>
+    </task>
+    <task id="LOCAL-00009" summary="lab 04 correct api">
+      <created>1731498693704</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1731498693704</updated>
+    </task>
+    <task id="LOCAL-00010" summary="lab 06 graphql">
+      <created>1731783878899</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1731783878899</updated>
+    </task>
+    <task id="LOCAL-00011" summary="lab 05 bad credentials error">
+      <created>1731783980713</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1731783980713</updated>
+    </task>
+    <task id="LOCAL-00012" summary="lab 05 swagger api documentation">
+      <created>1731784651942</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731784651942</updated>
+    </task>
+    <task id="LOCAL-00013" summary="lab 04 password validation">
+      <created>1731785352135</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1731785352135</updated>
+    </task>
+    <task id="LOCAL-00014" summary="lab 05 swagger">
+      <created>1731785784598</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1731785784598</updated>
+    </task>
+    <task id="LOCAL-00015" summary="lab 06 merge branch lab 05">
+      <created>1731785989634</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1731785989634</updated>
+    </task>
+    <task id="LOCAL-00016" summary="lab 07 fix cors">
+      <created>1733478265331</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733478265331</updated>
+    </task>
+    <task id="LOCAL-00017" summary="lab 04 security for restaurant search and main page">
+      <created>1733479483378</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733479483378</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="application.properties" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="lab 03 implementation of Service Layer with business logic" />
+    <MESSAGE value="lab 04 merge business logic and thymleaf" />
+    <MESSAGE value="renamed controller to web" />
+    <MESSAGE value="lab 05 implement rest controller" />
+    <MESSAGE value="lab 04 directory renaming" />
+    <MESSAGE value="lab 05 renaming" />
+    <MESSAGE value="lab 04 correct api" />
+    <MESSAGE value="lab 06 graphql" />
+    <MESSAGE value="lab 05 bad credentials error" />
+    <MESSAGE value="lab 05 swagger api documentation" />
+    <MESSAGE value="lab 04 password validation" />
+    <MESSAGE value="lab 05 swagger" />
+    <MESSAGE value="lab 06 merge branch lab 05" />
+    <MESSAGE value="lab 07 fix cors" />
+    <MESSAGE value="lab 04 security for restaurant search and main page" />
+    <MESSAGE value="Restaurant Graphql add and other changes with Restaurant rest API." />
+    <option name="LAST_COMMIT_MESSAGE" value="Restaurant Graphql add and other changes with Restaurant rest API." />
+  </component>
+</project>

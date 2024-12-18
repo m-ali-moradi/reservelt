@@ -1,0 +1,130 @@
+Index: reservelt-backend/src/main/java/de/fhdo/reservelt/security/SecurityConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package de.fhdo.reservelt.security;\r\n\r\nimport lombok.RequiredArgsConstructor;\r\nimport org.springframework.boot.web.servlet.FilterRegistrationBean;\r\nimport org.springframework.context.annotation.Bean;\r\nimport org.springframework.context.annotation.Configuration;\r\nimport org.springframework.security.authentication.AuthenticationManager;\r\nimport org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;\r\nimport org.springframework.security.config.annotation.web.builders.HttpSecurity;\r\nimport org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;\r\nimport org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;\r\nimport org.springframework.security.config.http.SessionCreationPolicy;\r\nimport org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;\r\nimport org.springframework.security.crypto.password.PasswordEncoder;\r\nimport org.springframework.security.web.SecurityFilterChain;\r\nimport org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;\r\nimport org.springframework.web.cors.CorsConfiguration;\r\nimport org.springframework.web.cors.UrlBasedCorsConfigurationSource;\r\nimport org.springframework.web.filter.CorsFilter;\r\n\r\n@Configuration\r\n@EnableWebSecurity\r\n@RequiredArgsConstructor\r\npublic class SecurityConfig {\r\n\r\n    private final JwtAuthenticationFilter jwtAuthenticationFilter ;\r\n\r\n    @Bean\r\n    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {\r\n        http\r\n                .csrf(AbstractHttpConfigurer::disable)\r\n                .authorizeHttpRequests(auth -> auth\r\n                        .requestMatchers(\"/auth/**\", \"/api/auth/**\", \"/graphql/**\", \"/graphiql/**\", \"/api-docs/**\", \"/swagger-ui/**\", \"/css/**\", \"/js/**\", \"/images/**\").permitAll()\r\n                        .requestMatchers(\"/users/**\", \"/api/users/**\").hasAuthority(\"USER\")\r\n                        .requestMatchers(\"/restaurants/**\", \"/api/restaurants/**\").hasAuthority(\"RESTAURANT\")\r\n                        .requestMatchers(\"/admin/**\", \"/api/admin/**\").hasAuthority(\"ADMIN\")\r\n                        .requestMatchers(\"/auth/**\", \"/css/**\", \"/js/**\", \"/images/**\", \"/\", \"/restaurants/search\").permitAll()\r\n                        .requestMatchers(\"/restaurants/search\").permitAll()\r\n                        .requestMatchers(\"/users/**\").hasAuthority(\"USER\")\r\n                        .requestMatchers(\"/restaurants/**\").hasAuthority(\"RESTAURANT\")\r\n                        .requestMatchers(\"/admin/**\").hasAuthority(\"ADMIN\")\r\n                )\r\n                .exceptionHandling(config -> {\r\n                    config.authenticationEntryPoint((request, response, authException) -> {\r\n                        // Handle unauthorized access (401)\r\n                        request.getSession().setAttribute(\"failed\", \"You are unauthorized. Please sign in.\");\r\n                        response.sendRedirect(\"/auth/login?error=401\");\r\n                    });\r\n                    config.accessDeniedHandler((request, response, accessDeniedException) -> {\r\n                        request.getSession().setAttribute(\"failed\", \"You are not allowed to access this page.\");\r\n                        // Handle forbidden access (403)\r\n                        response.sendRedirect(\"/users\");\r\n                    });\r\n                })\r\n                .sessionManagement(session ->\r\n                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)\r\n                )\r\n                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);\r\n\r\n        return http.build();\r\n    }\r\n\r\n    @Bean\r\n    public FilterRegistrationBean<CorsFilter> corsFilter() {\r\n        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();\r\n        CorsConfiguration config = new CorsConfiguration();\r\n        config.addAllowedOrigin(\"*\");\r\n        config.addAllowedHeader(\"*\");\r\n        config.addAllowedMethod(\"*\");\r\n        source.registerCorsConfiguration(\"/**\", config);\r\n        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));\r\n        bean.setOrder(0);\r\n        return bean;\r\n    }\r\n\r\n    @Bean\r\n    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception\r\n    { return authenticationConfiguration.getAuthenticationManager();}\r\n\r\n    @Bean\r\n    public PasswordEncoder passwordEncoder()\r\n    { return new BCryptPasswordEncoder(); }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/reservelt-backend/src/main/java/de/fhdo/reservelt/security/SecurityConfig.java b/reservelt-backend/src/main/java/de/fhdo/reservelt/security/SecurityConfig.java
+--- a/reservelt-backend/src/main/java/de/fhdo/reservelt/security/SecurityConfig.java	(revision 18fddb6c7b23c3999b4d70e051c28f51bd3679ae)
++++ b/reservelt-backend/src/main/java/de/fhdo/reservelt/security/SecurityConfig.java	(date 1733776948000)
+@@ -4,6 +4,7 @@
+ import org.springframework.boot.web.servlet.FilterRegistrationBean;
+ import org.springframework.context.annotation.Bean;
+ import org.springframework.context.annotation.Configuration;
++import org.springframework.core.Ordered;
+ import org.springframework.security.authentication.AuthenticationManager;
+ import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+@@ -18,6 +19,9 @@
+ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+ import org.springframework.web.filter.CorsFilter;
+ 
++import java.util.Collections;
++import java.util.List;
++
+ @Configuration
+ @EnableWebSecurity
+ @RequiredArgsConstructor
+@@ -30,15 +34,11 @@
+         http
+                 .csrf(AbstractHttpConfigurer::disable)
+                 .authorizeHttpRequests(auth -> auth
+-                        .requestMatchers("/auth/**", "/api/auth/**", "/graphql/**", "/graphiql/**", "/api-docs/**", "/swagger-ui/**", "/css/**", "/js/**", "/images/**").permitAll()
++                        .requestMatchers("/auth/**", "/api/auth/**", "/restaurants/search", "/graphql/**", "/graphiql/**", "/api-docs/**", "/swagger-ui/**", "/css/**", "/js/**", "/images/**").permitAll()
+                         .requestMatchers("/users/**", "/api/users/**").hasAuthority("USER")
+                         .requestMatchers("/restaurants/**", "/api/restaurants/**").hasAuthority("RESTAURANT")
+                         .requestMatchers("/admin/**", "/api/admin/**").hasAuthority("ADMIN")
+                         .requestMatchers("/auth/**", "/css/**", "/js/**", "/images/**", "/", "/restaurants/search").permitAll()
+-                        .requestMatchers("/restaurants/search").permitAll()
+-                        .requestMatchers("/users/**").hasAuthority("USER")
+-                        .requestMatchers("/restaurants/**").hasAuthority("RESTAURANT")
+-                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                 )
+                 .exceptionHandling(config -> {
+                     config.authenticationEntryPoint((request, response, authException) -> {
+@@ -61,15 +61,16 @@
+     }
+ 
+     @Bean
+-    public FilterRegistrationBean<CorsFilter> corsFilter() {
++    public FilterRegistrationBean simpleCorsFilter() {
+         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+         CorsConfiguration config = new CorsConfiguration();
+-        config.addAllowedOrigin("*");
+-        config.addAllowedHeader("*");
+-        config.addAllowedMethod("*");
++        config.setAllowCredentials(true);
++        config.setAllowedOrigins(List.of("http://127.0.0.1:8081", "http://localhost:8081", "http://127.0.0.1:3000", "http://localhost:3000"));
++        config.setAllowedMethods(Collections.singletonList("*"));
++        config.setAllowedHeaders(Collections.singletonList("*"));
+         source.registerCorsConfiguration("/**", config);
+         FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
+-        bean.setOrder(0);
++        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+         return bean;
+     }
+ 
+Index: reservelt-backend/src/main/java/de/fhdo/reservelt/bootstrap/DummyDataBootstrap.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package de.fhdo.reservelt.bootstrap;\r\n\r\nimport de.fhdo.reservelt.domain.City;\r\nimport de.fhdo.reservelt.domain.Country;\r\nimport de.fhdo.reservelt.domain.Restaurant;\r\nimport de.fhdo.reservelt.domain.Role;\r\nimport de.fhdo.reservelt.domain.enums.RoleName;\r\nimport de.fhdo.reservelt.dto.UserRegisterDto;\r\nimport de.fhdo.reservelt.repositories.CityRepository;\r\nimport de.fhdo.reservelt.repositories.CountryRepository;\r\nimport de.fhdo.reservelt.repositories.RestaurantRepository;\r\nimport de.fhdo.reservelt.repositories.RoleRepository;\r\nimport de.fhdo.reservelt.services.UserService;\r\nimport org.hibernate.mapping.List;\r\nimport org.springframework.context.ApplicationListener;\r\nimport org.springframework.context.event.ContextRefreshedEvent;\r\nimport org.springframework.stereotype.Component;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.ArrayList;\r\n\r\n@Component\r\npublic class DummyDataBootstrap implements ApplicationListener<ContextRefreshedEvent> {\r\n\r\n    private final UserService userService;\r\n    private final RoleRepository roleRepository;\r\n    private final CountryRepository countryRepository;\r\n    private final CityRepository cityRepository;\r\n    private final RestaurantRepository restaurantRepository;\r\n\r\n    public DummyDataBootstrap(UserService userService,\r\n                              RoleRepository roleRepository,\r\n                              CountryRepository countryRepository,\r\n                              CityRepository cityRepository, RestaurantRepository restaurantRepository) {\r\n        this.userService = userService;\r\n        this.roleRepository = roleRepository;\r\n        this.countryRepository = countryRepository;\r\n        this.cityRepository = cityRepository;\r\n        this.restaurantRepository = restaurantRepository;\r\n    }\r\n\r\n    @Override\r\n    public void onApplicationEvent(ContextRefreshedEvent event) {\r\n        initData();\r\n    }\r\n\r\n    private void initData() {\r\n        Country country1 = new Country();\r\n        country1.setId(1L);\r\n        country1.setName(\"Germany\");\r\n        countryRepository.save(country1);\r\n\r\n        Country country2 = new Country();\r\n        country2.setId(2L);\r\n        country2.setName(\"Kazakhstan\");\r\n        countryRepository.save(country2);\r\n\r\n        Country country3 = new Country();\r\n        country3.setId(3L);\r\n        country3.setName(\"France\");\r\n        countryRepository.save(country3);\r\n\r\n        City city1 = new City();\r\n        city1.setId(1L);\r\n        city1.setName(\"Dortmund\");\r\n        city1.setCountry(country1);\r\n        cityRepository.save(city1);\r\n\r\n        City city2 = new City();\r\n        city2.setId(2L);\r\n        city2.setName(\"Taraz\");\r\n        city2.setCountry(country2);\r\n        cityRepository.save(city2);\r\n\r\n        City city3 = new City();\r\n        city3.setId(3L);\r\n        city3.setName(\"Lion\");\r\n        city3.setCountry(country3);\r\n        cityRepository.save(city3);\r\n\r\n        Role userRole = new Role();\r\n        userRole.setId(1L);\r\n        userRole.setRoleName(RoleName.USER);\r\n        roleRepository.save(userRole);\r\n\r\n        Role restaurantRole = new Role();\r\n        restaurantRole.setId(2L);\r\n        restaurantRole.setRoleName(RoleName.RESTAURANT);\r\n        roleRepository.save(restaurantRole);\r\n\r\n        Role adminRole = new Role();\r\n        adminRole.setId(3L);\r\n        adminRole.setRoleName(RoleName.ADMIN);\r\n        roleRepository.save(adminRole);\r\n\r\n        Restaurant resGrammons = new Restaurant();\r\n        resGrammons.setId(1L);\r\n        resGrammons.setName(\"Grammons Restaurant\");\r\n        resGrammons.setAddress(\"Wieckesweg 29, 44309 Dortmund\");\r\n        resGrammons.setPhoneNumber(\"+49 231 93144465\");\r\n        resGrammons.setRating(\"4.6\");\r\n        restaurantRepository.save(resGrammons);\r\n\r\n        Restaurant resTheStage = new Restaurant();\r\n        resTheStage.setId(2L);\r\n        resTheStage.setName(\"The Stage\");\r\n        resTheStage.setAddress(\"Dula Center, Nortkirchenstraße 53, 44263 Dortmund\");\r\n        resTheStage.setPhoneNumber(\"+49 231 2222550\");\r\n        resTheStage.setRating(\"4.7\");\r\n\r\n        restaurantRepository.save(resTheStage);\r\n\r\n        UserRegisterDto userRegisterDto = new UserRegisterDto();\r\n        userRegisterDto.setFirstName(\"John\");\r\n        userRegisterDto.setLastName(\"Doe\");\r\n        userRegisterDto.setBirthDate(LocalDate.of(1999, 12, 31));\r\n        userRegisterDto.setCountry(1L);\r\n        userRegisterDto.setCity(1L);\r\n        userRegisterDto.setEmail(\"email@mail.com\");\r\n        userRegisterDto.setPassword(\"Qwerty123!\");\r\n        userRegisterDto.setPasswordConfirmation(\"Qwerty123!\");\r\n        userService.save(userRegisterDto);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/reservelt-backend/src/main/java/de/fhdo/reservelt/bootstrap/DummyDataBootstrap.java b/reservelt-backend/src/main/java/de/fhdo/reservelt/bootstrap/DummyDataBootstrap.java
+--- a/reservelt-backend/src/main/java/de/fhdo/reservelt/bootstrap/DummyDataBootstrap.java	(revision 18fddb6c7b23c3999b4d70e051c28f51bd3679ae)
++++ b/reservelt-backend/src/main/java/de/fhdo/reservelt/bootstrap/DummyDataBootstrap.java	(date 1733777580000)
+@@ -11,13 +11,11 @@
+ import de.fhdo.reservelt.repositories.RestaurantRepository;
+ import de.fhdo.reservelt.repositories.RoleRepository;
+ import de.fhdo.reservelt.services.UserService;
+-import org.hibernate.mapping.List;
+ import org.springframework.context.ApplicationListener;
+ import org.springframework.context.event.ContextRefreshedEvent;
+ import org.springframework.stereotype.Component;
+ 
+ import java.time.LocalDate;
+-import java.util.ArrayList;
+ 
+ @Component
+ public class DummyDataBootstrap implements ApplicationListener<ContextRefreshedEvent> {
+@@ -74,7 +72,7 @@
+ 
+         City city3 = new City();
+         city3.setId(3L);
+-        city3.setName("Lion");
++        city3.setName("Lyon");
+         city3.setCountry(country3);
+         cityRepository.save(city3);
+ 
+Index: reservelt-backend/src/main/resources/templates/profile.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\" xmlns:th=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n  <meta charset=\"UTF-8\" />\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\r\n  <meta name=\"description\" content=\"\">\r\n  <meta name=\"author\" content=\"\">\r\n  <title>Profile</title>\r\n  <link rel=\"stylesheet\" href=\"/css/register.css\">\r\n</head>\r\n<body>\r\n<div class=\"container mt-5\">\r\n  <h2 th:text=\"${greeting}\"></h2>\r\n  <div th:each=\"u : ${user}\" class=\"alert alert -info mt-2\">\r\n    <div th:if=\"${session.errorMessage}\">\r\n      <p th:text=\"${session.errorMessage}\" style=\"color: red;\"></p>\r\n    </div>\r\n    <table>\r\n      <tr>\r\n        <th>Username</th>\r\n        <td><p th:text=\"${u.email}\"></p></td>\r\n      </tr>\r\n      <tr>\r\n        <th>First Name</th>\r\n        <td><p th:text=\"${u.firstName}\"></p></td>\r\n      </tr>\r\n      <tr>\r\n        <th>Last Name</th>\r\n        <td><p th:text=\"${u.lastName}\"></p></td>\r\n      </tr>\r\n      <tr>\r\n        <th>Birth Date</th>\r\n        <td><p th:text=\"${u.birthDate}\"></p></td>\r\n      </tr>\r\n      <tr>\r\n        <th>Email</th>\r\n        <td><p th:text=\"${u.email}\"></p></td>\r\n      </tr>\r\n      <tr>\r\n        <th>Country</th>\r\n        <td><p th:text=\"${u.country.name}\"></p></td>\r\n      </tr>\r\n      <tr>\r\n        <th>City</th>\r\n        <td><p th:text=\"${u.city.name}\"></p></td>\r\n      </tr>\r\n    </table>\r\n    <form method=\"get\" action=\"/auth/logout\">\r\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Log out</button><br>\r\n    </form>\r\n    <button id=\"openDeleteModalBtn\" class=\"btn btn-primary\">Delete Account</button>\r\n    <a href=\"/users/edit\" class=\"btn btn-warning\">Edit Account</a>\r\n    <a href=\"/users/change-password\" class=\"btn btn-warning\">Change Password</a>\r\n  </div>\r\n\r\n  <div id=\"deleteAccountModal\" class=\"modal\">\r\n    <div class=\"modal-content\">\r\n      <h4>Are you sure?</h4>\r\n      <p>Do you really want to delete your account? This action cannot be undone.</p>\r\n      <form th:action=\"@{/users/delete}\" method=\"post\">\r\n        <button type=\"submit\" class=\"btn btn-danger\">Yes, Delete</button>\r\n        <button type=\"button\" id=\"cancelDeleteBtn\" class=\"btn btn-secondary\">Cancel</button>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<script>\r\n  document.addEventListener('DOMContentLoaded', () => {\r\n    const deleteAccountModal = document.getElementById('deleteAccountModal');\r\n    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');\r\n\r\n    // Function to open the modal\r\n    function openModal() {\r\n      deleteAccountModal.style.display = 'block';\r\n    }\r\n\r\n    // Function to close the modal\r\n    function closeModal() {\r\n      deleteAccountModal.style.display = 'none';\r\n    }\r\n\r\n    // Example trigger for opening the modal (replace with your actual button)\r\n    document.getElementById('openDeleteModalBtn')?.addEventListener('click', openModal);\r\n\r\n    // Close the modal when the \"Cancel\" button is clicked\r\n    cancelDeleteBtn.addEventListener('click', closeModal);\r\n\r\n    // Close the modal if the user clicks outside of the modal content\r\n    window.onclick = function(event) {\r\n      if (event.target === deleteAccountModal) {\r\n        closeModal();\r\n      }\r\n    };\r\n  });\r\n\r\n\r\n  // Clear the error message after displaying it\r\n  if (sessionStorage.getItem('errorMessageDisplayed') !== 'true') {\r\n    sessionStorage.setItem('errorMessageDisplayed', 'true');\r\n  } else {\r\n    document.querySelector('div[th\\\\:if=\"${session.errorMessage}\"]').style.display = 'none';\r\n  }\r\n</script>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/reservelt-backend/src/main/resources/templates/profile.html b/reservelt-backend/src/main/resources/templates/profile.html
+--- a/reservelt-backend/src/main/resources/templates/profile.html	(revision 18fddb6c7b23c3999b4d70e051c28f51bd3679ae)
++++ b/reservelt-backend/src/main/resources/templates/profile.html	(date 1733776905000)
+@@ -17,10 +17,6 @@
+     </div>
+     <table>
+       <tr>
+-        <th>Username</th>
+-        <td><p th:text="${u.email}"></p></td>
+-      </tr>
+-      <tr>
+         <th>First Name</th>
+         <td><p th:text="${u.firstName}"></p></td>
+       </tr>
+@@ -46,7 +42,7 @@
+       </tr>
+     </table>
+     <form method="get" action="/auth/logout">
+-      <button class="btn btn-lg btn-primary btn-block" type="submit">Log out</button><br>
++      <button class="btn btn-danger" type="submit">Log out</button><br>
+     </form>
+     <button id="openDeleteModalBtn" class="btn btn-primary">Delete Account</button>
+     <a href="/users/edit" class="btn btn-warning">Edit Account</a>
